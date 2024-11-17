@@ -1,23 +1,22 @@
-controller.A.onEvent(ControllerButtonEvent.Pressed, function on_a_pressed() {
-    if (frog.overlapsWith(fly)) {
-        game.over(true)
-    } else if (frog.overlapsWith(fly2)) {
-        game.over(true)
-    } else if (frog.overlapsWith(fly3)) {
-        game.over(true)
-    } else {
-        info.changeLifeBy(-1)
-    }
-    
-})
-let fly3 : Sprite = null
-let fly2 : Sprite = null
-let fly : Sprite = null
-let frog : Sprite = null
-scene.setBackgroundImage(assets.image`
+def on_a_pressed():
+    if frog.overlaps_with(fly):
+        game.over(True)
+    elif frog.overlaps_with(fly2):
+        game.over(True)
+    elif frog.overlaps_with(fly3):
+        game.over(True)
+    else:
+        info.change_life_by(-1)
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
+
+fly3: Sprite = None
+fly2: Sprite = None
+fly: Sprite = None
+frog: Sprite = None
+scene.set_background_image(assets.image("""
     pond
-`)
-frog = sprites.create(img`
+"""))
+frog = sprites.create(img("""
         ..........888..888..........
             .........8577885778.........
             ........857777777778........
@@ -46,15 +45,16 @@ frog = sprites.create(img`
             cccccccccccccccccccccccccccc
             .cccccccccccccccccccccccccc.
             ..cccccccccccccccccccccccc..
-    `, SpriteKind.Player)
-frog.setPosition(90, 88)
-fly = sprites.create(flies_imgs.fly, SpriteKind.Food)
-fly.setVelocity(190, 100)
-fly.setBounceOnWall(true)
-fly2 = sprites.create(flies_imgs.fly, SpriteKind.Food)
-fly2.setVelocity(150, 50)
-fly2.setBounceOnWall(true)
-fly3 = sprites.create(flies_imgs.fly, SpriteKind.Food)
-fly3.setVelocity(120, 70)
-fly3.setBounceOnWall(true)
-info.startCountdown(10)
+    """),
+    SpriteKind.player)
+frog.set_position(90, 88)
+fly = sprites.create(flies_imgs.fly, SpriteKind.food)
+fly.set_velocity(190, 100)
+fly.set_bounce_on_wall(True)
+fly2 = sprites.create(flies_imgs.fly, SpriteKind.food)
+fly2.set_velocity(150, 50)
+fly2.set_bounce_on_wall(True)
+fly3 = sprites.create(flies_imgs.fly, SpriteKind.food)
+fly3.set_velocity(120, 70)
+fly3.set_bounce_on_wall(True)
+info.start_countdown(10)
